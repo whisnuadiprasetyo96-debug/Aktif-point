@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InspiraSchool</title>
+  <style>
+    body {
+      font-family: Poppins, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #3b82f6;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .container {
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+
+<header>🏫 InspiraSchool</header>
+
+
+<div class="container">
+  <div class="card">
+    <h3>💰 Kas Kelas</h3>
+    <p>Total kas terkumpul: <strong id="kasTotal">Rp 0</strong></p>
+    <input type="number" id="jumlahKas" placeholder="Masukkan jumlah (Rp)" />
+    <button onclick="tambahKas()">Bayar Kas</button>
+  </div>
+
+
+  <div class="card">
+    <h3>📋 Absensi</h3>
+    <input type="text" id="namaSiswa" placeholder="Nama siswa" />
+    <button onclick="absen()">Absen Sekarang</button>
+    <ul id="daftarAbsensi"></ul>
+  </div>
+
+
+  <div class="card">
+    <h3>💡 Inspirasi Kegiatan</h3>
+    <input type="text" id="ide" placeholder="Tulis ide kegiatan..." />
+    <button onclick="tambahIde()">Kirim Ide</button>
+    <ul id="daftarIde"></ul>
+  </div>
+</div>
+
+
+<script>
+  let kas = 0;
+
+
+  function tambahKas() {
+    const jumlah = Number(document.getElementById('jumlahKas').value);
+    if (jumlah > 0) {
+      kas += jumlah;
+      document.getElementById('kasTotal').innerText = `Rp ${kas.toLocaleString('id-ID')}`;
+      alert('Kas berhasil ditambahkan!');
+      document.getElementById('jumlahKas').value = '';
+    } else {
+      alert('Masukkan jumlah kas yang valid.');
+    }
+  }
+
+
+  function absen() {
+    const nama = document.getElementById('namaSiswa').value;
+    if (nama.trim() !== '') {
+      const li = document.createElement('li');
+      li.textContent = `✅ ${nama} hadir`;
+      document.getElementById('daftarAbsensi').appendChild(li);
+      document.getElementById('namaSiswa').value = '';
+    } else {
+      alert('Masukkan nama terlebih dahulu.');
+    }
+  }
+
+
+  function tambahIde() {
+    const ide = document.getElementById('ide').value;
+    if (ide.trim() !== '') {
+      const li = document.createElement('li');
+      li.textContent = `💡 ${ide}`;
+      document.getElementById('daftarIde').appendChild(li);
+      document.getElementById('ide').value = '';
+    } else {
+      alert('Tulis ide kegiatan terlebih dahulu.');
+    }
+  }
+</script>
+
+
+</body>
+</html>
